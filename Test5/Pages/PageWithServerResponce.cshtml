@@ -1,0 +1,52 @@
+﻿@page
+@model Test5.Pages.PageWithServerResponceModel
+@{
+
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome</h1>
+    <input id="Input1" type="text" style="width: 200px;">
+    <input id="Input2" type="text" style="width: 200px;">
+    <br />
+    <p>
+        <input id="Input3" type="text" style="width: 200px;"></p>
+    <button id="myButton">Click me</button>
+    <br />
+    <p>Learn about lding Web apps with ASP.NET Core</p>
+    <p>Learn about lding Web apps with ASP.NET Core.</p>
+
+    <p>Learn about lding Web apps with ASP.NET Cor.</p>
+
+ 
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    var btn = document.getElementById('myButton');
+
+    btn.addEventListener('click', function () {
+        var input1 = document.getElementById('Input1').value;
+        var input2 = document.getElementById('Input2').value;
+
+        fetch(`/PageWithServerResponce?Input1=${input1}&Input2=${input2}`)
+            .then(response => {
+                console.log('Server response object:', response);
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('Input3').value = data;
+                console.log('Server data: ' + data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+
+
+</script>
